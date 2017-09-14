@@ -1,6 +1,6 @@
 # test-4
 
-Givent the test_data.csv file
+Given the test_data.csv file
 
 create an interface to upload the csv file, and display the data in a clever way.
 
