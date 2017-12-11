@@ -14,6 +14,7 @@ Bonus points:
 - flux pattern
 - immutable data structures
 - functional programming
+- scalable charts (test_data1 and test_data2 have debits between 1 and 100, test_data3 has debits between 1 and 10)
 - works
 
 Challenge mode:
