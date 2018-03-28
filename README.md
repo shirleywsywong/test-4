@@ -7,9 +7,9 @@ create an interface to upload the csv file, and display the data in a clever way
 What we are looking for:
 1) Sorting, graphs, analytics ar all allowed. We want to see a useful way to view this data
 2) we are looking for a single page application
-3) Must be done in React
 
 Bonus points:
+- we use React in house so Bonus for using it, but not a requirement
 - ES6
 - flux pattern
 - immutable data structures
