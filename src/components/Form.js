@@ -13,7 +13,6 @@ class Form extends Component {
     onFormSubmit = (e) => {
         e.preventDefault();
         const selectedFile = document.getElementById('file').files[0];
-        console.log(selectedFile);
 
         this.setState({
             file: selectedFile,
@@ -21,12 +20,17 @@ class Form extends Component {
 
     }
 
-    //each time a new file in loaded, check for valid file type
     componentDidUpdate(prevProps, prevState) {
-        const { file } = this.state;
-
+        const { file, fileContentCSV } = this.state;
+        
+        //each time a new file in loaded, check for valid file type
         if (file !== prevState.file) {
             this.checkFile();
+        }
+
+        //each time a new CSV file is loaded, read the file content
+        if (fileContentCSV !== prevState.fileContentCSV) {
+            this.readFile();
         }
     }
     
@@ -41,7 +45,7 @@ class Form extends Component {
             //check if user uploaded a csv file
             let fileName = this.state.file.name;
             let fileType = fileName.substr(fileName.length - 4);
-            console.log(`check file type`)
+
             if (fileType !== '.csv') {
                 alert(`Invalid file type. Please upload a CSV file.`)
             } else {
@@ -55,18 +59,24 @@ class Form extends Component {
     //open the file with the FileReader object
     readFile = () => {
         const reader = new FileReader();
-        reader.onload = function(event) {
+
+        reader.onload = (event) => {
             let contents = event.target.result;
-            this.setState({fileContentCSV: contents});
+            
+            this.setState({
+                fileContentCSV: contents,
+            });
         };
 
-        // reader.onerror = function(event) {
-        //     console.error("File could not be read! Code " + event.target.error.code);
-        // };
+        //pass the file data back to app.js
+        this.props.formSubmit(this.state.fileContentCSV);
+
+        reader.onerror = (event) => {
+            console.error("File could not be read! Code " + event.target.error.code);
+        };
 
         reader.readAsText(this.state.file);
     }
-    
 
     render() {
         return (
