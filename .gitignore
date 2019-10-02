@@ -23,3 +23,14 @@ test_4_ans_key.js# See https://help.github.com/articles/ignoring-files/ for more
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+-------------------------
+on page load, display form
+1. Best case: user enter .csv file
+2. user enter a non .csv file
+3. user did not enter a file
+
+in 2 and 3, wait until a .csv file is inputed before I can do anything
+
+in 1, access the data from the file
+split the data and turn them into individual arrays
+
