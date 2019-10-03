@@ -7,36 +7,31 @@ class Output extends Component {
         }
     }
 
-    // componentDidMount() {
-    //     this.localRawCSV(); 
-    // }
-
-    //store the rawCSV into local state
-    localRawCSV = () => {
-        console.log(`localrawcsv ran`)
-        this.setState({
-            rawCSV: this.props.rawCSV,
-        })
+    //each time a new prop comes in, run the separate values function
+    componentDidUpdate(prevProps, prevState) {
         this.separateVal();
     }
     
-    //split the csv into individual array @ (\r\ 1st), (, 2nd)
+    //split the csv into individual array 
     separateVal = () => {
-        // const { rawCSV } = this.state;
-        console.log(`separateval ran`)
-        let CSVarrays = this.state.rawCSV.split('\r\n');
 
-        this.setState({
-            CSVarrays: CSVarrays,
+        let CSVarrays = this.props.rawCSV.split('\r\n');
+        
+        let dataArrays = CSVarrays.map(function(val) {
+            return val.split(',')
         })
-        console.log(CSVarrays);
+        console.log(dataArrays); 
+
+        // this.setState({
+        //     CSVarrays: CSVarrays,
+        // })
     }
 
     render() {
         return(
             <section>
                 <p>
-                    {this.state.CSVarrays}
+                    {this.props.rawCSV}
                 </p>
             </section>
         )
