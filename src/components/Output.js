@@ -5,6 +5,7 @@ class Output extends Component {
     constructor() {
         super();
         this.state = {
+            dataAV: false
         }
     }
 
@@ -32,44 +33,58 @@ class Output extends Component {
 
         this.setState({
             heading: CSVheading,
-            data: dataArr
+            data: dataArr,
+            dataAV: true
         })
 
         
     }
 
+    renderingEmpty = () => {
+        return (
+            <div className="default">
+                If your data has more than 1000 rows, please use Firefox.
+            </div>
+        )
+    }
+
     renderingVal = () => {
 
-        //display data in a grid
-        //heading row with headings
-        //put each value of the object into a grid element
+        function renderdata(data) {
+
+            //go through each object in the array
+            return data.map((dataObj) => {
+
+                //grab the value of each key
+                let dataVal = [];
+                
+                for (let key in dataObj) {
+                    dataVal.push(<div className="grid-item">{dataObj[key]}</div>)
+                }
+                console.log(dataVal)
+                return dataVal;
+            })
+
+        }
+
         
-        // return(
-        //     <div className="output-grid">
-        //         {CSVheading.map((heading) => {
-        //             return <div className="heading">{heading}</div>
-        //         })}
-        //     </div>
-        // )
+        return(
+            <div className="output">
+                {this.state.heading.map((heading) => {
+                    return <div className="heading" key={heading}>{heading}</div>
+                })}
+                {renderdata(this.state.data)}
+            </div>
+        )
     }
 
     render() {
         return(
-            <section>
-                {/* {this.separateVal()} */}
+            <section className="display-area">
+                {this.state.dataAV ? this.renderingVal() : this.renderingEmpty()}
             </section>
         )
     }
 }
 
 export default Output;
-
-// componentDidUpdate() {
-//     setStatefn();
-// }
-
-// setStatefn = () => {
-//     this.setState({
-//         data: this.props.data
-//     })
-// }
