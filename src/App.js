@@ -11,6 +11,7 @@ class App extends Component {
     }
   }
 
+  //take data from form and set it in state to pass it to output
   formSubmit = (fileContentCSV) => {
     this.setState({
       rawCSV: fileContentCSV

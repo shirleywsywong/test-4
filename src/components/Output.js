@@ -40,6 +40,7 @@ class Output extends Component {
         
     }
 
+    //placeholder message while waiting for file
     renderingEmpty = () => {
         return (
             <div className="default">
@@ -47,7 +48,7 @@ class Output extends Component {
             </div>
         )
     }
-
+    
     renderingVal = () => {
 
         function renderdata(data) {

@@ -20,6 +20,7 @@ class Form extends Component {
 
     }
 
+    //check to see if there's a new file being uploaded
     componentDidUpdate(prevProps, prevState) {
         const { file, fileContentCSV } = this.state;
         
@@ -78,6 +79,7 @@ class Form extends Component {
         reader.readAsText(this.state.file);
     }
 
+    //render the form
     render() {
         return (
             <form action="" onSubmit={this.onFormSubmit}>
